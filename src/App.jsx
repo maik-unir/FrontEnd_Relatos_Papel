@@ -1,18 +1,19 @@
-import UserListView from './views/UserListView';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import MainLayout from './layouts/MainLayout';
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Relatos de Papel</h1>
-        <p>Front end creado en React para Proyecto transversal Relatos de papel - MISSI Unir 2025-2026</p>
-      </header>
-      <div className="bg-light min-vh-100">
-      <UserListView />
-     </div>
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        {/* Usamos el Layout como padre de todas las rutas */}
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="porDefinir" element={<h2>Página por definir (Próximamente)</h2>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
-
+export default App;
