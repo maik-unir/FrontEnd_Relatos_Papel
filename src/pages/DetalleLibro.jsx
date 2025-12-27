@@ -22,7 +22,7 @@ const HomePage = () => {
         
       </p>
     </Container>
-    <Footer />
+
     </>
   );
 };

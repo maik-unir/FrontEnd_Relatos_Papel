@@ -8,7 +8,7 @@ const HomePage = () => {
         <p className="lead">Descubre miles de libros fisicos y digitales.</p>
       </header>
       <h1>Aquí checkout/proceso de compra (datos de cliente, método de pago...)</h1>
-    <Footer />
+   
     </>
   );
 };

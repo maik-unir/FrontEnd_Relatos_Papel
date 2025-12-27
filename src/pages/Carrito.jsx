@@ -10,7 +10,7 @@ const HomePage = () => {
       </header>
       <h1>Aquí todo lo referente a libros añadidos al carrito...</h1>
     </Container>
-    <Footer />
+
     </>
   );
 };

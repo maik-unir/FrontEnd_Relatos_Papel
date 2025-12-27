@@ -11,7 +11,6 @@ const HomePage = () => {
       </header>
       <h1>Lista de Libros (página principal)</h1>
     </Container>
-    <Footer />
     </>
   );
 };

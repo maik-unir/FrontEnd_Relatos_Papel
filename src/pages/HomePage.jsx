@@ -14,8 +14,6 @@ const HomePage = () => {
           <UserListView />
         </Container>
       </div>
-      
-      <Footer />
     </>
   );
 };
