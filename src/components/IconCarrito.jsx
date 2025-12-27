@@ -17,6 +17,7 @@ const IconCarrito = () => {
                     <Cart className="me-2" /><Badge bg="danger">{getTotalPrice()}</Badge>  
                 </Button>
         </Link>
+        
     );
 };
 
