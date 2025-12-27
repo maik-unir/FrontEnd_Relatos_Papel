@@ -1,5 +1,6 @@
 import { Container } from 'react-bootstrap';
 import UserListView from '../views/UserListView'; 
+import BannerListView from '../views/BannerListView';
 
 const HomePage = () => {
   return (
@@ -10,6 +11,7 @@ const HomePage = () => {
             <h1>Bienvenido a tu librería Digital</h1>
             <p className="lead">Descubre miles de libros físicos y digitales.</p>
           </header>
+          <BannerListView />
           <UserListView />
         </Container>
       </div>

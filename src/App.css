@@ -56,3 +56,29 @@ footer {
   color: #ffffff;
   padding: 20px 0;
 }
+
+.banner-img {
+  
+  max-height: 300px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.banner-caption {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+}
+
+.banner-caption h3,
+.banner-caption p {
+  color: #fff;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  padding: 1.2rem;
+  background-size: 60%;
+}
