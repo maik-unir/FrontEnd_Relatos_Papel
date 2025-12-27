@@ -11,14 +11,16 @@ const MainLayout = () => {
     <>
     <Header />
 
-      {/* Aquí es donde se renderizarán las páginas */}
-      <main className="py-4">
-        <Outlet /> 
+      <main style={{ flex: 1 }}>
+        <Container className="py-4">
+          <Outlet />
+        </Container>
       </main>
 
-    
-      <Footer />
-    </>
+      <ErrorBoundary>
+        <Footer />
+      </ErrorBoundary>
+    </div>
   );
 };
 

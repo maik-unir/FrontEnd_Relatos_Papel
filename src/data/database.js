@@ -1,3 +1,9 @@
+import cien from "../assets/images/cien_anos_de_soledad.jpg";
+import senor from "../assets/images/senor_anillos.jpg";
+import mundo from "../assets/images/un_mundo_feliz.jpg";
+import orgullo from "../assets/images/orgullo_prejuicio.jpg";
+
+
 export const users = [
     { id: 1, name: "Jaime Zapata G", email: "jzapatag@ejemplo.com", bio: "Usuario de prueba" },
     { id: 2, name: "Rafael Avila", email: "ravila@ejemplo.com", bio: "Usuario de prueba" },
@@ -26,3 +32,12 @@ export const users = [
     { id: 15, name: "Rebelión en la granja", description: "esta es una descripcion del libro", price: 60 },
     { id: 16, name: "Don Quijote de la Mancha", description: "esta es una descripcion del libro", price: 150 }
   ];
+
+
+
+export const dataBanner = [
+    { id: 1, nombre: "Cien años de soledad", descripcion: "Gabriel García Márquez", imagen: cien },
+    { id: 2, nombre: "El señor de los anillos", descripcion: "J. R. R. Tolkien", imagen: senor },
+    { id: 3, nombre: "Un mundo feliz", descripcion: "Aldous Huxley", imagen: mundo },
+    { id: 4, nombre: "Orgullo y prejuicio", descripcion: "Jane Austen", imagen: orgullo }    
+];

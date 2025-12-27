@@ -1,17 +1,29 @@
-import { Container } from 'react-bootstrap';
-const HomePage = () => {
+import { Container, Row, Col } from "react-bootstrap";
+import Footer from "../components/Footer";
+import CartTotals from "../components/cart/CartTotals";
+import { booksMock } from "../data/books.mock";
+
+const Carrito = () => {
+  const cartItems = booksMock.map((b) => ({ ...b, qty: 1 }));
+
   return (
     <>
-    <Container>
-      <header className="mb-5 text-center">
-        <h1>Bienvenido a tu libreria Digital</h1>
-        <p className="lead">Descubre miles de libros fisicos y digitales.</p>
-      </header>
-      <h1>Aquí todo lo referente a libros añadidos al carrito...</h1>
-    </Container>
+      <Container className="py-4">
+        <Row>
+          <Col md={8}>
+            <h3>Productos en el carrito</h3>
+            {/* Aquí luego va la lista real */}
+          </Col>
 
+          <Col md={4}>
+            <CartTotals items={cartItems} onClear={() => alert("Carrito vacío")} />
+          </Col>
+        </Row>
+      </Container>
+
+      <Footer />
     </>
   );
 };
 
-export default HomePage;
+export default Carrito;

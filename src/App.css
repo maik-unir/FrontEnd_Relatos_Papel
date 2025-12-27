@@ -1,12 +1,10 @@
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
 .App {
   text-align: center;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: rgb(222, 67, 67);
 }
 
 .App-header {
@@ -51,8 +49,46 @@
 }
 
 
+main {
+  flex: 1 0 auto;
+}
+
 footer {
   background-color: #76a5af;
   color: #ffffff;
   padding: 20px 0;
+}
+
+.banner-container {
+  margin-bottom: 2.5rem;
+}
+
+.banner-img {
+  
+  max-height: 300px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.banner-caption {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+}
+
+.banner-caption h3,
+.banner-caption p {
+  color: #fff;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  padding: 1.2rem;
+  background-size: 60%;
+}
+.filters-sidebar {
+  border-right: 1px solid #ddd;
+  padding-right: 16px;
 }

@@ -1,26 +1,40 @@
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCcVisa, faCcMastercard, faCcAmex } from '@fortawesome/free-brands-svg-icons';
-import '../App.css';
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCcVisa,
+  faCcMastercard,
+  faCcAmex,
+} from "@fortawesome/free-brands-svg-icons";
+import "../App.css";
 
 const Footer = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
 
   const handleSubscribe = (e) => {
     e.preventDefault();
-    console.log('Email subscribed:', email);
-    setEmail('');
+    console.log("Email subscribed:", email);
+    setEmail("");
   };
 
   return (
-    <footer style={{  }}>
+    <footer
+      style={{
+        backgroundColor: "#7aa5ad",
+        padding: "32px 0",
+        marginTop: "40px",
+        width: "100%",
+      }}
+    >
+      {/* Container SOLO para centrar contenido */}
       <Container>
-        {/* Primera fila - Nombre, categorías y suscripción */}
+        {/* Primera fila */}
         <Row className="align-items-center mb-3">
           <Col lg={8} className="mb-3 mb-lg-0">
             <div className="d-flex align-items-center gap-3 flex-wrap">
-              <span style={{ fontSize: '16px' }}>Nombre Sitio</span>
+              <span style={{ fontSize: "16px", color: "#ffffff" }}>
+                Nombre Sitio
+              </span>
             </div>
           </Col>
 
@@ -31,19 +45,19 @@ const Footer = () => {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                style={{ 
-                  maxWidth: '250px',
-                  backgroundColor: '#ffffff'
+                style={{
+                  maxWidth: "250px",
+                  backgroundColor: "#ffffff",
                 }}
               />
-              <Button 
+              <Button
                 onClick={handleSubscribe}
-                style={{ 
-                  backgroundColor: '#ffffff',
-                  color: '#000000',
-                  border: 'none',
-                  fontWeight: '400',
-                  padding: '6px 20px'
+                style={{
+                  backgroundColor: "#ffffff",
+                  color: "#000000",
+                  border: "none",
+                  fontWeight: "400",
+                  padding: "6px 20px",
                 }}
               >
                 Subscribe
@@ -52,22 +66,23 @@ const Footer = () => {
           </Col>
         </Row>
 
-        {/* Segunda fila - Logos de pago */}
+        {/* Segunda fila */}
         <Row className="mb-3">
           <Col>
-            <div className="d-flex gap-2">
-                <FontAwesomeIcon icon={faCcVisa} size="2x" beat/>
-                <FontAwesomeIcon icon={faCcMastercard} size="2x" beat/>
-                <FontAwesomeIcon icon={faCcAmex} size="2x" beat/>
+            <div className="d-flex gap-3">
+              <FontAwesomeIcon icon={faCcVisa} size="2x" />
+              <FontAwesomeIcon icon={faCcMastercard} size="2x" />
+              <FontAwesomeIcon icon={faCcAmex} size="2x" />
             </div>
           </Col>
         </Row>
 
-        {/* Tercera fila - Copyright */}
+        {/* Tercera fila */}
         <Row>
           <Col className="text-center">
-            <p style={{ margin: 0, fontSize: '14px' }}>
-              {new Date().getFullYear()} Copyright © - Todos los derechos reservados
+            <p style={{ margin: 0, fontSize: "14px", color: "#ffffff" }}>
+              {new Date().getFullYear()} Copyright © - Todos los derechos
+              reservados
             </p>
           </Col>
         </Row>
