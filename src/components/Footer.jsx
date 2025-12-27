@@ -18,14 +18,7 @@ const Footer = () => {
   };
 
   return (
-    <footer
-      style={{
-        backgroundColor: "#7aa5ad",
-        padding: "32px 0",
-        marginTop: "40px",
-        width: "100%",
-      }}
-    >
+    <footer className="py-4 footerBackground">
       {/* Container SOLO para centrar contenido */}
       <Container>
         {/* Primera fila */}
@@ -70,9 +63,9 @@ const Footer = () => {
         <Row className="mb-3">
           <Col>
             <div className="d-flex gap-3">
-              <FontAwesomeIcon icon={faCcVisa} size="2x" />
-              <FontAwesomeIcon icon={faCcMastercard} size="2x" />
-              <FontAwesomeIcon icon={faCcAmex} size="2x" />
+              <FontAwesomeIcon icon={faCcVisa} size="2x" beat/>
+              <FontAwesomeIcon icon={faCcMastercard} size="2x" beat/>
+              <FontAwesomeIcon icon={faCcAmex} size="2x" beat/>
             </div>
           </Col>
         </Row>
