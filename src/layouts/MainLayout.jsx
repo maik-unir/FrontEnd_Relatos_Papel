@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 const MainLayout = () => {
   return (
     <>
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar  expand="lg">
         <Container>
           <Navbar.Brand href="/">Front end creado en React para Proyecto transversal Relatos de papel - MISSI Unir 2025-2026</Navbar.Brand>
           <Nav className="me-auto">
