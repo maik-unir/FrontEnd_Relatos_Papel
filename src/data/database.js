@@ -25,5 +25,4 @@ export const users = [
     { id: 14, name: "1984", description: "esta es una descripcion del libro", price: 88 },
     { id: 15, name: "Rebelión en la granja", description: "esta es una descripcion del libro", price: 60 },
     { id: 16, name: "Don Quijote de la Mancha", description: "esta es una descripcion del libro", price: 150 }
-
   ];

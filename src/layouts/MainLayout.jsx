@@ -16,7 +16,7 @@ const MainLayout = () => {
             <Nav.Link href="/">Caterogia 1 |</Nav.Link>
             <Nav.Link href="/porDefinir">Caterogia 2 |</Nav.Link>
             <Nav.Link href="/porDefinir">Caterogia 3 |</Nav.Link>
-            <Nav.Link href="/porDefinir">Caterogia 4 |</Nav.Link>
+            <Nav.Link href="/porDefinir">Caterogia 4 </Nav.Link>
           </Nav>
           <FontAwesomeIcon icon={faCcVisa} size="2x" />
           <FontAwesomeIcon icon={faCcMastercard} size="2x" />

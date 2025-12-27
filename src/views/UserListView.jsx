@@ -1,5 +1,5 @@
 import { Row, Col } from 'react-bootstrap';
-import { users } from '../data/users';
+import { users } from '../data/database';
 import UserCard from '../components/UserCard';
 
 const UserListView = () => {
