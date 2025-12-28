@@ -79,7 +79,6 @@ export const getBreadcrumbForRoute = (pathname, params, context = {}) => {
     }
   }
 
-  // Si no hay match, retornar solo "Inicio"
   return [{ label: "Inicio", to: "/" }];
 };
 

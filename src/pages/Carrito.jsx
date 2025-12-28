@@ -2,6 +2,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import Footer from "../components/Footer";
 import CartTotals from "../components/cart/CartTotals";
 import { booksMock } from "../data/books.mock";
+import Breadcrumb from "../components/breadcrumb/Breadcrumb";
 
 const Carrito = () => {
   const cartItems = booksMock.map((b) => ({ ...b, qty: 1 }));
@@ -9,6 +10,7 @@ const Carrito = () => {
   return (
     <>
       <Container className="py-4">
+        <Breadcrumb />
         <Row>
           <Col md={8}>
             <h3>Productos en el carrito</h3>

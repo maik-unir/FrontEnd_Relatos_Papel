@@ -1,10 +1,12 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import CheckoutForm from '../components/checkout/CheckoutForm';
 import OrderSummary from '../components/checkout/OrderSummary';
+import Breadcrumb from '../components/breadcrumb/Breadcrumb';
 
 const CheckoutView = () => {
   return (
     <Container>
+      <Breadcrumb />
       <Row className='py-4'>
         <Col lg={8} md={12}>
           <CheckoutForm />
