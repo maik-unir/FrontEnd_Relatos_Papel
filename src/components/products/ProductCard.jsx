@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Card, Button, Badge } from "react-bootstrap";
 
 const ProductCard = ({ book }) => {
@@ -30,6 +31,8 @@ const ProductCard = ({ book }) => {
         </div>
 
         <Button
+          as={Link}
+          to={`/libros/${book.id}`} 
           variant="warning"
           disabled={!isDisponible}
           className="mt-auto"
