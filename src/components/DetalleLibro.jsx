@@ -8,27 +8,45 @@ import { Link } from "react-router-dom";
 const DetalleLibro = ({ libro }) => {
   return (
     <Card className="p-4 shadow-sm">
-      <Row className="align-items-center">
-        <Col md={4} className="text-center mb-3 mb-md-0">
-          <Image
-            src={libro.fotos}
-            alt={libro.nombre}
-            fluid
-            rounded
-            style={{ maxHeight: "400px" }}
-          />
+      <Row>
+        <Col md={8} className="text-center mb-3 mb-md-0">
+          <img src={libro.fotos} alt={libro.nombre} fluid rounded className="detalle-img" />
         </Col>
 
-        <Col md={8}>
+        <Col md={4}>
           <Card.Body>
-            <Card.Title as="h2">{libro.nombre}</Card.Title>
+            <Card.Title as="div" className="d-flex justify-content-between align-items-center">
+              
+              <h2 className="mb-0">{libro.nombre}</h2>
+              <span className="fs-4 fw-bold text-success"> ${libro.precio}</span>
+              
+            </Card.Title>
+
+            <hr />
+
+            <div className="mt-3">
+              <label htmlFor="cantidad" className="form-label">
+                <b>Cantidad</b>
+              </label>
+              <input id="cantidad" type="number" min="1" defaultValue="1" className="form-control" />
+            </div>
+
+            <div className="d-flex gap-2 mt-3">
+              <button className="btn btn-warning">
+                Añadir al carrito
+              </button>
+
+              <Link to="/" className="btn btn-secondary">
+                Volver a inicio
+              </Link>
+            </div>
+            
+            <hr />
+
             <Card.Text className="text-muted">
               {libro.descripcion}
             </Card.Text>
 
-            <Button as={Link} to="/" variant="secondary">
-              Volver
-            </Button>
           </Card.Body>
         </Col>
       </Row>

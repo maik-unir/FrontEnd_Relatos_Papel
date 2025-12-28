@@ -88,7 +88,13 @@ footer {
   padding: 1.2rem;
   background-size: 60%;
 }
+
 .filters-sidebar {
   border-right: 1px solid #ddd;
   padding-right: 16px;
 }
+
+.detalle-img{
+  max-height: 400px;
+}
+
