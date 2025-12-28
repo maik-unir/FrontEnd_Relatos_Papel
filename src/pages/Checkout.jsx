@@ -1,14 +1,15 @@
-const HomePage = () => {
+import CheckoutView from '../views/CheckoutView';
+
+const Checkout = () => {
   return (
     <>
       <header className="mb-5 text-center">
         <h1>Bienvenido a tu libreria Digital</h1>
         <p className="lead">Descubre miles de libros fisicos y digitales.</p>
       </header>
-      <h1>Aquí checkout/proceso de compra (datos de cliente, método de pago...)</h1>
-   
+      <CheckoutView />
     </>
   );
 };
 
-export default HomePage;
+export default Checkout;

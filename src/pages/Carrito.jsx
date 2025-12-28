@@ -21,7 +21,6 @@ const Carrito = () => {
         </Row>
       </Container>
 
-      <Footer />
     </>
   );
 };
