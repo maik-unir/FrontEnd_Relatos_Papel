@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
-import { booksMock } from "../data/books.mock";
+import { books } from "../data/database";
 import DetalleLibro from "../components/DetalleLibro";
 
 const DetalleLibroView = () => {
   const { id } = useParams();
 
-  const libro = booksMock.find(
+  const libro = books.find(
     (item) => item.id === parseInt(id)
   );
 

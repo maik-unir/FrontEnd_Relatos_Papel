@@ -15,7 +15,7 @@ function App() {
         {/* Layout único */}
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
-          <Route path="ListaLibros" element={<ListaLibros />} />
+          <Route path="libros" element={<ListaLibros />} />
           <Route path="libros/:id" element={<DetalleLibro />} />
           <Route path="carrito" element={<Carrito />} />
           <Route path="checkout" element={<Checkout />} />
