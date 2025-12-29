@@ -1,5 +1,6 @@
 import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { books } from "../data/database";
 import CartTotals from "../components/cart/CartTotals";
@@ -8,8 +9,8 @@ import { Trash } from "react-bootstrap-icons";
 
 const Carrito = () => {
   const { cart, dispatch, getTotalPrice } = useContext(CartContext);
+  const navigate = useNavigate();
 
-  // Obtener información completa de cada item del carrito
   const cartItemsWithDetails = cart.map((item) => {
     const book = books.find((b) => b.id === item.id);
     return {
@@ -33,6 +34,10 @@ const Carrito = () => {
 
   const handleDecrease = (id) => {
     dispatch({ type: "DECREASE", payload: id });
+  };
+
+  const handleCheckout = () => {
+    navigate("/checkout");
   };
 
   return (
@@ -125,6 +130,16 @@ const Carrito = () => {
 
           <Col md={4}>
             <CartTotals onClear={handleClearCart} />
+            <hr />
+            {cart.length > 0 && (
+                <Button 
+                  variant="primary" 
+                  className="w-100"
+                  onClick={handleCheckout}
+                >
+                  Comprar
+                </Button>
+            )}
           </Col>
         </Row>
       </Container>
