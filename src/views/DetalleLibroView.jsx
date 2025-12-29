@@ -12,15 +12,9 @@ const DetalleLibroView = () => {
 
   if (!libro) return <p>Libro no encontrado</p>;
 
-  const breadcrumbItems = [
-    { label: "Inicio", to: "/" },
-    { label: libro.categoria, to: `/libros?categoria=${encodeURIComponent(libro.categoria)}` },
-    { label: libro.nombre, to: "" },
-  ];
-
   return (
     <div className="container mt-4">
-      <Breadcrumb items={breadcrumbItems} />
+      <Breadcrumb libro={libro} />
       <DetalleLibro libro={libro} />
     </div>
   );

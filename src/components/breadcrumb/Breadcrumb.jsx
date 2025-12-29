@@ -1,8 +1,19 @@
 import { Breadcrumb as BSBreadcrumb } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { books } from "../../data/database";
+import { getBreadcrumbForRoute } from "../../config/breadcrumbConfig";
 
-const Breadcrumb = ({ items = [] }) => {
-  if (!items || items.length === 0) return null;
+const Breadcrumb = ({ libro = null }) => {
+  const location = useLocation();
+  const params = useParams();
+
+  const items = getBreadcrumbForRoute(
+    location.pathname,
+    params,
+    { libro, books }
+  );
+
+  if (items.length <= 1) return null;
 
   return (
     <BSBreadcrumb className="mb-3">

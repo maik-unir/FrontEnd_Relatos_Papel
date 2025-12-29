@@ -4,6 +4,7 @@ import { books } from "../data/database";
 import SearchBar from "../components/search/SearchBar";
 import PaginationControl from "../components/common/PaginationControl";
 import { CartContext } from "../context/CartContext";
+import Breadcrumb from "../components/breadcrumb/Breadcrumb";
 
 const ListaLibros = () => {
   const { dispatch } = useContext(CartContext);
@@ -66,6 +67,7 @@ const ListaLibros = () => {
   return (
     <>
       <Container fluid>
+        <Breadcrumb />
         <SearchBar onSearch={setSearchText} />
 
         <div style={{ display: "flex", gap: "24px" }}>
