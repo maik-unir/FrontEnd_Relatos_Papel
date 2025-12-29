@@ -72,15 +72,19 @@ export const CartProvider = ({ children }) => {
     cart.reduce((acc, item) => acc + item.cantidad, 0);
 
   // Total de la compra
-  const getTotalPrice = () =>
-    cart.reduce((acc, item) => {
-      const book = books.find((b) => b.id === item.id);
+  const getTotalPrice = () => {
+  const total = cart.reduce((acc, item) => {
+    const book = books.find(b => b.id === item.id);
 
-      if (!book) return acc;
+    if (!book) return acc;
 
-      return acc + book.precio * item.cantidad;
-    }, 0);
+    return acc + book.precio * item.cantidad;
+  }, 0);
 
+  return Number(total.toFixed(2));
+};
+
+    
   // Obtener informacion de un libro por su ID
   const getBookById = (getBookById) => {
     return books.find((book) => book.id === getBookById);
