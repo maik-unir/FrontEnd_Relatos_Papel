@@ -5,7 +5,8 @@ import {
   ListaLibros,
   DetalleLibro,
   Carrito,
-  Checkout
+  Checkout,
+  ConfirmOrder
 } from "./pages";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="libros/:id" element={<DetalleLibro />} />
           <Route path="carrito" element={<Carrito />} />
           <Route path="checkout" element={<Checkout />} />
+          <Route path="confirmacion" element={<ConfirmOrder />} />
         </Route>
       </Routes>
     </BrowserRouter>
