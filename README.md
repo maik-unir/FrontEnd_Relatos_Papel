@@ -10,7 +10,6 @@ Una aplicación de e-commerce para una librería digital que permite a los usuar
 - **React Router DOM 7.11.0** - Enrutamiento para aplicaciones React
 - **React Bootstrap 2.10.10** - Componentes de Bootstrap para React
 - **Bootstrap 5.3.8** - Framework CSS
-- **Vite 6.4.1** - Herramienta de construcción y desarrollo
 - **React Bootstrap Icons** - Iconos para React Bootstrap
 
 ## 📦 Instalación
