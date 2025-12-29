@@ -50,18 +50,18 @@ const IconCarrito = () => {
                         >
                         <div>
                             <span className="fw-semibold">
-                            {item.name}
+                            {item.nombre}
                             </span>
                             <br />
                             <small className="text-muted">
-                            Cantidad: {item.quantity}
+                            Cantidad: {item.cantidad}
                             </small>
                         </div>
 
                         <Button
                             variant="link"
                             className="text-danger p-0"
-                            aria-label={`Eliminar ${item.name} del carrito`}
+                            aria-label={`Eliminar ${item.nombre} del carrito`}
                             onClick={() =>
                             dispatch({
                                 type: "REMOVE",
