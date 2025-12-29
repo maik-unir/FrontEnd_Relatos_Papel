@@ -3,12 +3,11 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 
-
 const METODOS_ENVIO = [
-  { tipo: "Entrega en puerta", precio: 2.20 },
-  { tipo: "Entrega estándar", precio: 5.00 },
-  { tipo: "Entrega express", precio: 10.50 },
-  { tipo: "Recogida en tienda", precio: 0.00 }
+  { tipo: "Entrega en puerta", precio: 2.2 },
+  { tipo: "Entrega estándar", precio: 5.0 },
+  { tipo: "Entrega express", precio: 10.5 },
+  { tipo: "Recogida en tienda", precio: 0.0 },
 ];
 
 const FRANQUICIAS = {
@@ -16,9 +15,8 @@ const FRANQUICIAS = {
   mastercard: "Mastercard",
   amex: "AMEX",
   discover: "Discover",
-  diners: "Diners"
+  diners: "Diners",
 };
-
 
 const cardUtils = {
   identificarFranquicia: (numero) => {
@@ -34,7 +32,11 @@ const cardUtils = {
   formatearNumero: (num, franchise) => {
     const clean = num.replace(/\D/g, "");
     if (franchise === "amex") {
-      return clean.replace(/(\d{4})(\d{6})(\d{5})/, "$1 $2 $3") || clean.match(/.{1,4}/g)?.join(" ") || clean;
+      return (
+        clean.replace(/(\d{4})(\d{6})(\d{5})/, "$1 $2 $3") ||
+        clean.match(/.{1,4}/g)?.join(" ") ||
+        clean
+      );
     }
     return clean.match(/.{1,4}/g)?.join(" ") || clean;
   },
@@ -42,7 +44,7 @@ const cardUtils = {
   validarLuhn: (numero) => {
     const num = numero.replace(/\s/g, "");
     if (!/^\d+$/.test(num)) return false;
-    
+
     let sum = 0;
     let isEven = false;
     for (let i = num.length - 1; i >= 0; i--) {
@@ -58,36 +60,43 @@ const cardUtils = {
   },
 
   validarFecha: (fecha) => {
- 
     if (!/^\d{2}\/\d{2,4}$/.test(fecha)) return false;
-    
+
     const [mes, añoStr] = fecha.split("/");
     const mesNum = parseInt(mes);
     let añoNum = parseInt(añoStr);
-    
+
     // Si el año tiene 2 dígitos, convertir a 4 (asumiendo 2000-2099)
     if (añoStr.length === 2) {
       añoNum = 2000 + añoNum;
     }
-    
+
     const ahora = new Date();
     const añoActual = ahora.getFullYear();
     const mesActual = ahora.getMonth() + 1;
-    
-    return mesNum >= 1 && mesNum <= 12 && 
-           (añoNum > añoActual || (añoNum === añoActual && mesNum >= mesActual));
+
+    return (
+      mesNum >= 1 &&
+      mesNum <= 12 &&
+      (añoNum > añoActual || (añoNum === añoActual && mesNum >= mesActual))
+    );
   },
 
   validarCVV: (cvv, franchise) => {
-    return /^\d+$/.test(cvv) && (franchise === "amex" ? cvv.length === 4 : cvv.length === 3);
+    return (
+      /^\d+$/.test(cvv) &&
+      (franchise === "amex" ? cvv.length === 4 : cvv.length === 3)
+    );
   },
 
   validarNombre: (nombre) => {
-    return nombre.trim().length >= 3 && /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre);
-  }
+    return (
+      nombre.trim().length >= 3 && /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre)
+    );
+  },
 };
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ shipping, setShipping }) => {
   const navigate = useNavigate();
   const { getTotalPrice } = useContext(CartContext);
 
@@ -95,7 +104,12 @@ const CheckoutForm = () => {
   const [metodoEnvio, setMetodoEnvio] = useState(null);
   const [editingDireccion, setEditingDireccion] = useState(false);
   const [editingEnvio, setEditingEnvio] = useState(false);
-  const [tempDireccion, setTempDireccion] = useState({ calle: "", ciudad: "", estado: "", codigoPostal: "" });
+  const [tempDireccion, setTempDireccion] = useState({
+    calle: "",
+    ciudad: "",
+    estado: "",
+    codigoPostal: "",
+  });
   const [tempEnvio, setTempEnvio] = useState(null);
 
   const [cardData, setCardData] = useState({
@@ -103,22 +117,24 @@ const CheckoutForm = () => {
     name: "",
     expiry: "",
     cvv: "",
-    franchise: null
+    franchise: null,
   });
   const [errors, setErrors] = useState({});
   const [direccionEntrega, setDireccionEntrega] = useState("misma");
   const [guardarInfo, setGuardarInfo] = useState(false);
 
   const updateError = (field, message) => {
-    setErrors(prev => ({ ...prev, [field]: message }));
+    setErrors((prev) => ({ ...prev, [field]: message }));
   };
 
   const updateCardData = (field, value) => {
-    setCardData(prev => ({ ...prev, [field]: value }));
+    setCardData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleEditDireccion = () => {
-    setTempDireccion(direccionEnvio || { calle: "", ciudad: "", estado: "", codigoPostal: "" });
+    setTempDireccion(
+      direccionEnvio || { calle: "", ciudad: "", estado: "", codigoPostal: "" }
+    );
     setEditingDireccion(true);
   };
 
@@ -128,7 +144,9 @@ const CheckoutForm = () => {
   };
 
   const handleCancelDireccion = () => {
-    setTempDireccion(direccionEnvio || { calle: "", ciudad: "", estado: "", codigoPostal: "" });
+    setTempDireccion(
+      direccionEnvio || { calle: "", ciudad: "", estado: "", codigoPostal: "" }
+    );
     setEditingDireccion(false);
   };
 
@@ -140,6 +158,7 @@ const CheckoutForm = () => {
 
   const handleSaveEnvio = () => {
     setMetodoEnvio(tempEnvio);
+    setShipping(tempEnvio);
     setEditingEnvio(false);
   };
 
@@ -152,14 +171,17 @@ const CheckoutForm = () => {
     const valor = e.target.value.replace(/\D/g, "");
     const franchise = cardUtils.identificarFranquicia(valor);
     const maxLength = franchise === "amex" ? 15 : 16;
-    
+
     if (valor.length <= maxLength) {
       const formateado = cardUtils.formatearNumero(valor, franchise);
       updateCardData("franchise", franchise);
       updateCardData("number", formateado);
-      
+
       if (valor.length === maxLength) {
-        updateError("cardNumber", cardUtils.validarLuhn(valor) ? "" : "Número de tarjeta inválido");
+        updateError(
+          "cardNumber",
+          cardUtils.validarLuhn(valor) ? "" : "Número de tarjeta inválido"
+        );
       } else {
         updateError("cardNumber", "");
       }
@@ -169,12 +191,15 @@ const CheckoutForm = () => {
   const handleCardName = (e) => {
     const valor = e.target.value;
     updateCardData("name", valor);
-    updateError("cardName", valor && !cardUtils.validarNombre(valor) ? "Ingrese un nombre válido" : "");
+    updateError(
+      "cardName",
+      valor && !cardUtils.validarNombre(valor) ? "Ingrese un nombre válido" : ""
+    );
   };
 
   const handleCardExpiry = (e) => {
     let valor = e.target.value.replace(/\D/g, "");
-    
+
     // Formatear: MM/AA o MM/AAAA
     if (valor.length >= 2) {
       if (valor.length <= 4) {
@@ -185,12 +210,15 @@ const CheckoutForm = () => {
         valor = valor.substring(0, 2) + "/" + valor.substring(2, 6);
       }
     }
-    
+
     updateCardData("expiry", valor);
-    
+
     // Validar cuando tenga formato completo (MM/AA o MM/AAAA)
     if (valor.length === 5 || valor.length === 7) {
-      updateError("cardExpiry", cardUtils.validarFecha(valor) ? "" : "Fecha inválida");
+      updateError(
+        "cardExpiry",
+        cardUtils.validarFecha(valor) ? "" : "Fecha inválida"
+      );
     } else {
       updateError("cardExpiry", "");
     }
@@ -199,18 +227,20 @@ const CheckoutForm = () => {
   const handleCardCvv = (e) => {
     const valor = e.target.value.replace(/\D/g, "");
     const maxLength = cardData.franchise === "amex" ? 4 : 3;
-    
+
     if (valor.length <= maxLength) {
       updateCardData("cvv", valor);
       if (valor.length === maxLength) {
-        updateError("cardCvv", cardUtils.validarCVV(valor, cardData.franchise) ? "" : "CVV inválido");
+        updateError(
+          "cardCvv",
+          cardUtils.validarCVV(valor, cardData.franchise) ? "" : "CVV inválido"
+        );
       } else {
         updateError("cardCvv", "");
       }
     }
   };
 
- 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = {};
@@ -229,7 +259,10 @@ const CheckoutForm = () => {
       newErrors.cardExpiry = "Fecha inválida";
       isValid = false;
     }
-    if (!cardData.cvv || !cardUtils.validarCVV(cardData.cvv, cardData.franchise)) {
+    if (
+      !cardData.cvv ||
+      !cardUtils.validarCVV(cardData.cvv, cardData.franchise)
+    ) {
       newErrors.cardCvv = "CVV inválido";
       isValid = false;
     }
@@ -239,28 +272,34 @@ const CheckoutForm = () => {
       // Preparar datos de la orden para la confirmación
       const orderData = {
         customerName: cardData.name || "Estudiante UNIR",
-        billingAddress: direccionEnvio ? {
-          nombre: cardData.name || "Estudiante UNIR",
-          calle: direccionEnvio.calle,
-          ciudad: `${direccionEnvio.ciudad}, ${direccionEnvio.estado} ${direccionEnvio.codigoPostal}`,
-          pais: "Logroño, España"
-        } : null,
-        shippingAddress: direccionEnvio ? {
-          nombre: cardData.name || "Estudiante UNIR",
-          calle: direccionEnvio.calle,
-          ciudad: `${direccionEnvio.ciudad}, ${direccionEnvio.estado} ${direccionEnvio.codigoPostal}`,
-          pais: "Logroño, España"
-        } : null,
-        shippingMethod: metodoEnvio ? {
-          tipo: metodoEnvio.tipo,
-          tiempo: "Tiempo de entrega estimado, 3 a 6 días"
-        } : null,
+        billingAddress: direccionEnvio
+          ? {
+              nombre: cardData.name || "Estudiante UNIR",
+              calle: direccionEnvio.calle,
+              ciudad: `${direccionEnvio.ciudad}, ${direccionEnvio.estado} ${direccionEnvio.codigoPostal}`,
+              pais: "Logroño, España",
+            }
+          : null,
+        shippingAddress: direccionEnvio
+          ? {
+              nombre: cardData.name || "Estudiante UNIR",
+              calle: direccionEnvio.calle,
+              ciudad: `${direccionEnvio.ciudad}, ${direccionEnvio.estado} ${direccionEnvio.codigoPostal}`,
+              pais: "Logroño, España",
+            }
+          : null,
+        shippingMethod: metodoEnvio
+          ? {
+              tipo: metodoEnvio.tipo,
+              tiempo: "Tiempo de entrega estimado, 3 a 6 días",
+            }
+          : null,
         paymentMethod: {
           franchise: cardData.franchise || "visa",
-          lastDigits: cardData.number.slice(-4).replace(/\s/g, "") || "3217"
+          lastDigits: cardData.number.slice(-4).replace(/\s/g, "") || "3217",
         },
-        shipping: metodoEnvio?.precio || 2.20,
-        taxes: (getTotalPrice() * 0.07).toFixed(2)
+        shipping: shipping?.precio || 2.2,
+        taxes: (getTotalPrice() * 0.07).toFixed(2),
       };
 
       // Redirigir a la página de confirmación con los datos
@@ -268,15 +307,14 @@ const CheckoutForm = () => {
     }
   };
 
-
   const formatearDireccion = () => {
-    return direccionEnvio 
+    return direccionEnvio
       ? `${direccionEnvio.calle}, ${direccionEnvio.ciudad}, ${direccionEnvio.estado} ${direccionEnvio.codigoPostal}`
       : "No se ha agregado una dirección";
   };
 
   const formatearEnvio = () => {
-    return metodoEnvio 
+    return metodoEnvio
       ? `${metodoEnvio.tipo}, $${metodoEnvio.precio.toFixed(2)}`
       : "No se ha seleccionado un método de envío";
   };
@@ -289,7 +327,9 @@ const CheckoutForm = () => {
           <strong>Dirección de envío</strong>
           {!editingDireccion ? (
             <div className="d-flex justify-content-between align-items-center">
-              <span className={!direccionEnvio ? "text-muted" : ""}>{formatearDireccion()}</span>
+              <span className={!direccionEnvio ? "text-muted" : ""}>
+                {formatearDireccion()}
+              </span>
               <Button variant="link" size="sm" onClick={handleEditDireccion}>
                 {direccionEnvio ? "Editar" : "Agregar"}
               </Button>
@@ -301,14 +341,24 @@ const CheckoutForm = () => {
                   <Form.Label>Calle</Form.Label>
                   <Form.Control
                     value={tempDireccion.calle}
-                    onChange={(e) => setTempDireccion({ ...tempDireccion, calle: e.target.value })}
+                    onChange={(e) =>
+                      setTempDireccion({
+                        ...tempDireccion,
+                        calle: e.target.value,
+                      })
+                    }
                   />
                 </Form.Group>
                 <Form.Group className="mb-3">
                   <Form.Label>Ciudad</Form.Label>
                   <Form.Control
                     value={tempDireccion.ciudad}
-                    onChange={(e) => setTempDireccion({ ...tempDireccion, ciudad: e.target.value })}
+                    onChange={(e) =>
+                      setTempDireccion({
+                        ...tempDireccion,
+                        ciudad: e.target.value,
+                      })
+                    }
                   />
                 </Form.Group>
                 <Row>
@@ -317,7 +367,12 @@ const CheckoutForm = () => {
                       <Form.Label>Estado</Form.Label>
                       <Form.Control
                         value={tempDireccion.estado}
-                        onChange={(e) => setTempDireccion({ ...tempDireccion, estado: e.target.value })}
+                        onChange={(e) =>
+                          setTempDireccion({
+                            ...tempDireccion,
+                            estado: e.target.value,
+                          })
+                        }
                       />
                     </Form.Group>
                   </Col>
@@ -326,26 +381,44 @@ const CheckoutForm = () => {
                       <Form.Label>Código Postal</Form.Label>
                       <Form.Control
                         value={tempDireccion.codigoPostal}
-                        onChange={(e) => setTempDireccion({ ...tempDireccion, codigoPostal: e.target.value })}
+                        onChange={(e) =>
+                          setTempDireccion({
+                            ...tempDireccion,
+                            codigoPostal: e.target.value,
+                          })
+                        }
                       />
                     </Form.Group>
                   </Col>
                 </Row>
                 <div className="d-flex gap-2 justify-content-end">
-                  <Button variant="secondary" size="sm" onClick={handleCancelDireccion}>Cancelar</Button>
-                  <Button variant="primary" size="sm" onClick={handleSaveDireccion}>Guardar</Button>
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    onClick={handleCancelDireccion}
+                  >
+                    Cancelar
+                  </Button>
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    onClick={handleSaveDireccion}
+                  >
+                    Guardar
+                  </Button>
                 </div>
               </Form>
             </div>
           )}
         </div>
 
-     
         <div className="mb-3">
           <strong>Método de envío</strong>
           {!editingEnvio ? (
             <div className="d-flex justify-content-between align-items-center">
-              <span className={!metodoEnvio ? "text-muted" : ""}>{formatearEnvio()}</span>
+              <span className={!metodoEnvio ? "text-muted" : ""}>
+                {formatearEnvio()}
+              </span>
               <Button variant="link" size="sm" onClick={handleEditEnvio}>
                 {metodoEnvio ? "Editar" : "Agregar"}
               </Button>
@@ -365,18 +438,27 @@ const CheckoutForm = () => {
                   />
                 ))}
                 <div className="d-flex gap-2 justify-content-end mt-3">
-                  <Button variant="secondary" size="sm" onClick={handleCancelEnvio}>Cancelar</Button>
-                  <Button variant="primary" size="sm" onClick={handleSaveEnvio}>Guardar</Button>
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    onClick={handleCancelEnvio}
+                  >
+                    Cancelar
+                  </Button>
+                  <Button variant="primary" size="sm" onClick={handleSaveEnvio}>
+                    Guardar
+                  </Button>
                 </div>
               </Form>
             </div>
           )}
         </div>
 
-      
         <h6 className="mt-4 mb-3">
           Método de pago
-          {cardData.franchise && <span className="ms-2">{FRANQUICIAS[cardData.franchise]}</span>}
+          {cardData.franchise && (
+            <span className="ms-2">{FRANQUICIAS[cardData.franchise]}</span>
+          )}
         </h6>
 
         <Form onSubmit={handleSubmit}>
@@ -393,11 +475,16 @@ const CheckoutForm = () => {
                 className={cardData.franchise ? "pe-5" : ""}
               />
               {cardData.franchise && (
-                <span className="position-absolute end-0 top-50 translate-middle-y me-2" style={{ fontSize: "1.2rem" }}>
+                <span
+                  className="position-absolute end-0 top-50 translate-middle-y me-2"
+                  style={{ fontSize: "1.2rem" }}
+                >
                   💳
                 </span>
               )}
-              <Form.Control.Feedback type="invalid">{errors.cardNumber}</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">
+                {errors.cardNumber}
+              </Form.Control.Feedback>
             </div>
           </Form.Group>
 
@@ -412,7 +499,9 @@ const CheckoutForm = () => {
                   onChange={handleCardName}
                   isInvalid={!!errors.cardName}
                 />
-                <Form.Control.Feedback type="invalid">{errors.cardName}</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  {errors.cardName}
+                </Form.Control.Feedback>
               </Form.Group>
             </Col>
             <Col md={3} className="mt-2 mt-md-0">
@@ -426,12 +515,19 @@ const CheckoutForm = () => {
                   maxLength={7}
                   isInvalid={!!errors.cardExpiry}
                 />
-                <Form.Control.Feedback type="invalid">{errors.cardExpiry}</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  {errors.cardExpiry}
+                </Form.Control.Feedback>
               </Form.Group>
             </Col>
             <Col md={3} className="mt-2 mt-md-0">
               <Form.Group>
-                <Form.Label>CVV <span className="ms-1" title="Código de seguridad">?</span></Form.Label>
+                <Form.Label>
+                  CVV{" "}
+                  <span className="ms-1" title="Código de seguridad">
+                    ?
+                  </span>
+                </Form.Label>
                 <Form.Control
                   type="text"
                   placeholder={cardData.franchise === "amex" ? "1234" : "123"}
@@ -440,7 +536,9 @@ const CheckoutForm = () => {
                   maxLength={cardData.franchise === "amex" ? 4 : 3}
                   isInvalid={!!errors.cardCvv}
                 />
-                <Form.Control.Feedback type="invalid">{errors.cardCvv}</Form.Control.Feedback>
+                <Form.Control.Feedback type="invalid">
+                  {errors.cardCvv}
+                </Form.Control.Feedback>
               </Form.Group>
             </Col>
           </Row>
@@ -472,8 +570,12 @@ const CheckoutForm = () => {
           />
 
           <div className="d-flex justify-content-between align-items-center">
-            <Button variant="link" type="button">&lt; Volver a Información del cliente</Button>
-            <Button variant="primary" type="submit">Completar Orden</Button>
+            {/* <Button variant="link" type="button">
+              &lt; Volver a Información del cliente
+            </Button> */}
+            <Button variant="primary" type="submit">
+              Completar Orden
+            </Button>
           </div>
         </Form>
       </Card.Body>

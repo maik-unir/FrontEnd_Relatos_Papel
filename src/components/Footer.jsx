@@ -44,9 +44,9 @@ const Footer = () => {
         <Row className="mb-3">
           <Col>
             <div className="d-flex gap-3">
-              <FontAwesomeIcon icon={faCcVisa} size="2x" />
-              <FontAwesomeIcon icon={faCcMastercard} size="2x" />
-              <FontAwesomeIcon icon={faCcAmex} size="2x" />
+              <FontAwesomeIcon icon={faCcVisa} size="2x" beat />
+              <FontAwesomeIcon icon={faCcMastercard} size="2x" beat />
+              <FontAwesomeIcon icon={faCcAmex} size="2x" beat />
             </div>
           </Col>
         </Row>

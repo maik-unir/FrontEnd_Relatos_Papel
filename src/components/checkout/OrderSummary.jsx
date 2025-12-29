@@ -1,39 +1,44 @@
-import { Card, Form, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 
-const OrderSummary = () => {
+const OrderSummary = ({ shipping }) => {
+  const { cart, getTotalPrice } = useContext(CartContext);
+
+  const subtotal = getTotalPrice();
+const shippingCost = shipping ?? 2.20;
+const taxes = parseFloat((subtotal * 0.07).toFixed(2));
+const total = (subtotal + shippingCost + taxes).toFixed(2);
+
   return (
-    <Card className="text-bg-secondary bg-opacity-25 p-3 shadow-md text-dark">
+    <Card className="text-bg-secondary bg-opacity-25 p-3 shadow-sm text-dark">
       <Card.Body>
-        <h5 className="mb-3"><strong>Resumen (1 item)</strong></h5>
+        <h5 className="mb-3">
+          <strong>
+            Resumen ({cart.length} {cart.length === 1 ? "item" : "items"})
+          </strong>
+        </h5>
 
         <div className="d-flex justify-content-between">
           <span>Subtotal</span>
-          <span>$20.00</span>
+          <span>${subtotal.toFixed(2)}</span>
         </div>
 
         <div className="d-flex justify-content-between">
           <span>Envío</span>
-          <span>$2.20</span>
+          <span>${shippingCost.toFixed(2)}</span>
         </div>
 
         <div className="d-flex justify-content-between mb-3">
           <span>Impuestos (estimados)</span>
-          <span>$1.40</span>
+          <span>${taxes.toFixed(2)}</span>
         </div>
-
-        {/* <Form.Group className="mb-3">
-          <Form.Label>Código de descuento</Form.Label>
-          <div className="d-flex gap-2">
-            <Form.Control type="text" />
-            <Button variant="secondary">Validar</Button>
-          </div>
-        </Form.Group> */}
 
         <hr />
 
         <div className="d-flex justify-content-between fw-bold">
           <span>Total</span>
-          <span>$23.60</span>
+          <span>${total}</span>
         </div>
       </Card.Body>
     </Card>

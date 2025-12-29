@@ -24,18 +24,18 @@ const Checkout = () => {
 
   return (
     <>
-      <header className="mb-5 text-center">
+{/*       <header className="mb-5 text-center">
         <h1>Bienvenido a tu libreria Digital</h1>
         <p className="lead">Descubre miles de libros fisicos y digitales.</p>
-      </header>
-      <Button
+      </header> */}
+      {/* <Button
           className="m-2"
           variant="outline-danger"
           size="sm"
           onClick={handleClearCart}
         >
           Limpiar carrito
-        </Button>
+        </Button> */}
       <CheckoutView />
 
     </>
