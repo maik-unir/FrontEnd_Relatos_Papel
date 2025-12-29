@@ -1,5 +1,6 @@
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 
 const ConfirmOrder = ({ orderData }) => {
@@ -116,6 +117,18 @@ const ConfirmOrder = ({ orderData }) => {
               </div>
             </Col>
           </Row>
+
+          {/* Botón para volver al home */}
+          <div className="mt-4">
+            <Button 
+              as={Link}
+              to="/"
+              variant="primary"
+              size="lg"
+            >
+              Volver al Inicio
+            </Button>
+          </div>
         </Col>
 
         {/* Resumen de la orden */}
