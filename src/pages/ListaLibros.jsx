@@ -109,9 +109,17 @@ const ListaLibros = () => {
                     alt={book.nombre}
                     style={{
                       width: "140px",
-                      height: "100%",
+                      height: "200px",
                       objectFit: "cover",
                       borderRadius: "4px",
+                      backgroundColor: "#f0f0f0",
+                    }}
+                    loading="lazy"
+                    onError={(e) => {
+                      const placeholderUrl = `https://placehold.co/140x200/cccccc/666666?text=${encodeURIComponent(book.nombre)}`;
+                      if (e.target.src !== placeholderUrl) {
+                        e.target.src = placeholderUrl;
+                      }
                     }}
                   />
 

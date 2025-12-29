@@ -4,10 +4,12 @@ import Footer from '../components/Footer';
 import '../App.css';
 import Header from '../components/Header';
 import ErrorBoundary from "../components/ErrorBoundary";
+import InactivityDetector from '../components/common/InactivityDetector';
 
 const MainLayout = () => {
   return (
     <>
+      <InactivityDetector />
       <Header />
 
       <main style={{ flex: 1 }}>
