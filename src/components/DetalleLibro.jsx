@@ -1,11 +1,31 @@
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Image from "react-bootstrap/Image";
-import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 const DetalleLibro = ({ libro }) => {
+  const { dispatch } = useContext(CartContext);
+  const [cantidad, setCantidad] = useState(1);
+
+  // Handler cantidad
+  const handleQtyChange = (e) => {
+    setCantidad(Number(e.target.value));
+  };
+
+  // Handler añadir al carrito
+  const handleAddToCart = () => {
+    dispatch({
+      type: "ADD_ITEM",
+      payload: {
+        id: libro.id,
+        nombre: libro.nombre,
+        cantidad,
+      },
+    });
+  };
+
   return (
     <Card className="p-4 shadow-sm">
       <Row>
@@ -28,11 +48,11 @@ const DetalleLibro = ({ libro }) => {
               <label htmlFor="cantidad" className="form-label">
                 <b>Cantidad</b>
               </label>
-              <input id="cantidad" type="number" min="1" defaultValue="1" className="form-control" />
+              <input id="cantidad" type="number" min="1" defaultValue="1" className="form-control" onChange={handleQtyChange} />
             </div>
 
             <div className="d-flex gap-2 mt-3">
-              <button className="btn btn-warning">
+              <button className="btn btn-warning" onClick={handleAddToCart}>
                 Añadir al carrito
               </button>
 

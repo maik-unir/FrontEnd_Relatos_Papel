@@ -5,6 +5,7 @@ import SearchBar from "../components/search/SearchBar";
 import PaginationControl from "../components/common/PaginationControl";
 import { CartContext } from "../context/CartContext";
 import Breadcrumb from "../components/breadcrumb/Breadcrumb";
+import { Link } from "react-router-dom";
 
 const ListaLibros = () => {
   const { dispatch } = useContext(CartContext);
@@ -155,25 +156,32 @@ const ListaLibros = () => {
                         />
                       </label>
                     </div>
+                    
+                    <div className="d-flex gap-2 mt-3">
+                      <button
+                        disabled={book.estado !== "Disponible"}
+                        onClick={() => handleAddToCart(book)}
+                        style={{                          
+                          background:
+                            book.estado === "Disponible" ? "#ffc107" : "#ccc",
+                          border: "none",
+                          padding: "8px",
+                          borderRadius: "4px",
+                          cursor:
+                            book.estado === "Disponible"
+                              ? "pointer"
+                              : "not-allowed",
+                        }}
+                      >
+                        Agregar al carrito
+                      </button>
 
-                    <button
-                      disabled={book.estado !== "Disponible"}
-                      onClick={() => handleAddToCart(book)}
-                      style={{
-                        width: "100%",
-                        background:
-                          book.estado === "Disponible" ? "#ffc107" : "#ccc",
-                        border: "none",
-                        padding: "8px",
-                        borderRadius: "4px",
-                        cursor:
-                          book.estado === "Disponible"
-                            ? "pointer"
-                            : "not-allowed",
-                      }}
-                    >
-                      Agregar al carrito
-                    </button>
+                      
+                      <Link to={`/libros/${book.id}`} className="btn btn-secondary">
+                        Ver detalle
+                      </Link>
+                    </div>
+
                     <div className="d-flex justify-content-end mb-3"></div>
                   </div>
                 </div>
