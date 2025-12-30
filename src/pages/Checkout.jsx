@@ -17,9 +17,9 @@ const Checkout = () => {
   }, [cart]);
 
   // Handler para limpiar carrito
-    const handleClearCart = () => {
+    /* const handleClearCart = () => {
       dispatch({ type: "CLEAR" });
-    };
+    }; */
 
 
   return (

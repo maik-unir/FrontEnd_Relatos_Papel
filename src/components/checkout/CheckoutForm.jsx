@@ -477,7 +477,6 @@ const CheckoutForm = ({ shipping, setShipping }) => {
               {cardData.franchise && (
                 <span
                   className="position-absolute end-0 top-50 translate-middle-y me-2"
-                  style={{ fontSize: "1.2rem" }}
                 >
                   💳
                 </span>
