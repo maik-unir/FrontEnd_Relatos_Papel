@@ -1,4 +1,4 @@
-import { Navbar, Container, Nav } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { Outlet } from 'react-router-dom';
 import Footer from '../components/Footer';
 import '../App.css';
@@ -12,7 +12,7 @@ const MainLayout = () => {
       <InactivityDetector />
       <Header />
 
-      <main style={{ flex: 1 }}>
+      <main>
         <Container className="py-4">
           <Outlet />
         </Container>

@@ -15,7 +15,7 @@ const HomePage = () => {
 
   const handleSearch = (query) => {
     const result = booksMock.filter((book) =>
-      book.title.toLowerCase().includes(query.toLowerCase())
+      book.nombre.toLowerCase().includes(query.toLowerCase())
     );
     setFilteredBooks(result);
     setCurrentPage(1);

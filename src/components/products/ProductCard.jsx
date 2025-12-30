@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
 import { Card, Button, Badge } from "react-bootstrap";
+import "./ProductCard.css";
 
 const ProductCard = ({ book }) => {
   const isDisponible = book.estado === "Disponible" && book.cantidad > 0;
 
   return (
-    <Card className="h-100 shadow-sm">
-      <div style={{ height: "250px", overflow: "hidden" }}>
+    <Card className="product-card h-100 shadow-sm">
+      <div className="product-card-img-wrapper">
         <Card.Img
           src={book.fotos}
           alt={book.nombre}
-          style={{ objectFit: "cover", height: "100%", width: "100%" }}
+          className="product-card-img"
           onError={(e) => {
             e.target.src = "https://placehold.co/300x400?text=Libro";
           }}
@@ -32,7 +33,7 @@ const ProductCard = ({ book }) => {
 
         <Button
           as={Link}
-          to={`/libros/${book.id}`} 
+          to={`/libros/${book.id}`}
           variant="warning"
           disabled={!isDisponible}
           className="mt-auto"

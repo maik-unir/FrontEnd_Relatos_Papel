@@ -1,0 +1,88 @@
+/* Layout */
+.lista-layout {
+    display: flex;
+    gap: 24px;
+}
+
+.lista-filtros {
+    width: 260px;
+    border-right: 1px solid #ddd;
+}
+
+.lista-resultados {
+    flex: 1;
+}
+
+/* Cards */
+.lista-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.libro-card {
+    display: flex;
+    gap: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    align-items: stretch;
+}
+
+.libro-imagen {
+    width: 140px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+}
+
+.libro-info {
+    flex: 1;
+}
+
+.libro-info p {
+    font-size: 14px;
+}
+
+.libro-acciones {
+    min-width: 160px;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.libro-acciones strong {
+    font-size: 18px;
+}
+
+.libro-qty {
+    margin: 8px 0;
+}
+
+.libro-qty input {
+    width: 60px;
+    margin-left: 6px;
+}
+
+/* Buttons */
+.btn-add {
+    background-color: #ffc107;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-add.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Pagination */
+.lista-paginacion {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
